@@ -40,9 +40,9 @@ pods:
         volumes: #Volumes to link
           main:
             from: 'main'
-            mount_path: '/path/in/container/' #Path where volume will be mount
+            mount-path: '/path/in/container/' #Path where volume will be mount
           vendor:
-            mount_path: '/path/in/container/' #Path where data will be stored
+            mount-path: '/path/in/container/' #Path where data will be stored
             add: #folder or file, from .paas.yml where is located to add to the volume
               - 'vendor'
         variables:
