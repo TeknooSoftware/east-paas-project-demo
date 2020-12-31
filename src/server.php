@@ -11,12 +11,18 @@ require(__DIR__ . '/../vendor/autoload.php');
 $loop = Factory::create();
 
 $server = new HttpServer($loop, static function () {
+    $output = 'Hello World! '
+        . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
+        . PHP_EOL . include ('/opt/extra/run.sh');
+
+    \file_put_contents('/opt/data/output', $output);
+
     return new Response(
         200,
         [
             'Content-Type' => 'text/plain'
         ],
-        'Hello World! ' . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
+        $output
     );
 });
 

@@ -15,14 +15,10 @@ builds:
 
 #Volume to build to use with container
 volumes:
-  main: #Name of the volume
+  extra: #Name of the volume
     local_path: "/foo/bar" #optional local path where store data in the volume
     add: #folder or file, from .paas.yml where is located to add to the volume
-      - 'src'
-      - 'vendor'
-      - 'composer.json'
-      - 'composer.lock'
-      - 'composer.phar'
+      - 'extra'
   other_name: #Name of the volume
     add: #folder or file, from .paas.yml where is located to add to the volume
       - 'vendor'
@@ -30,7 +26,7 @@ volumes:
 #Pods (set of container)
 pods:
   php-pods: #podset name
-    replicas: 1 #instance of pods
+    replicas: 2 #instance of pods
     containers:
       php-run: #Container name
         image: registry.teknoo.io/php-run #Container image to use
@@ -38,15 +34,22 @@ pods:
         listen: #Port listen by the container
           - 8080
         volumes: #Volumes to link
-          main:
+          extra:
             from: 'main'
-            mount-path: '/opt/paas/' #Path where volume will be mount
-          vendor:
-            mount-path: '/opt/vendor' #Path where data will be stored
+            mount-path: '/opt/extra' #Path where volume will be mount
+          app:
+            mount-path: '/opt/app' #Path where data will be stored
             add: #folder or file, from .paas.yml where is located to add to the volume
+              - 'src'
               - 'vendor'
+              - 'composer.json'
+              - 'composer.lock'
+              - 'composer.phar'
+          date:
+            mount-path: '/opt/data'
+            persistent: true
         variables:
-          SERVER_SCRIPT: '/opt/paas/src/server.php'
+          SERVER_SCRIPT: '/opt/app/src/server.php'
 
 #Pods expositions
 services:
