@@ -45,7 +45,7 @@ pods:
               - 'composer.json'
               - 'composer.lock'
               - 'composer.phar'
-          date:
+          data:
             mount-path: '/opt/data'
             persistent: true
         variables:
