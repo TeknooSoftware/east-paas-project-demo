@@ -35,7 +35,7 @@ pods:
           - 8080
         volumes: #Volumes to link
           extra:
-            from: 'main'
+            from: 'extra'
             mount-path: '/opt/extra' #Path where volume will be mount
           app:
             mount-path: '/opt/app' #Path where data will be stored
