@@ -1,4 +1,4 @@
 <?php
 
-echo @system('hostname');
+echo system('hostname');
 echo PHP_EOL . 'End of Extra';
