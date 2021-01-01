@@ -45,7 +45,7 @@ pods:
               - 'composer.json'
               - 'composer.lock'
               - 'composer.phar'
-          data:
+          data: #Persistent volume, can not be pre-populated
             mount-path: '/opt/data'
             persistent: true
         variables:
