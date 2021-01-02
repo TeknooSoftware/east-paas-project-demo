@@ -53,6 +53,20 @@ pods:
 
 #Pods expositions
 services:
-  php-pods: #Pod name
-    - listen: 9876 #Port listened
-      target: 8080 #Pod's port targeted
+  php-services: #Service name
+    pod: "php-pods" #Pod name, use service name by default
+    internal: false #If false, a load balancer is use to access it from outside
+    protocol: 'TCP' #Or UDP
+    ports:
+      - listen: 9876 #Port listened
+        target: 8080 #Pod's port targeted
+
+#Ingress configuration
+ingress:
+  demo: #rule name
+    host: demo-paas.teknoo.io
+    service: #default service
+      name: php-pods
+      port: 8080
+    paths:
+      -
