@@ -50,15 +50,35 @@ pods:
             persistent: true
         variables:
           SERVER_SCRIPT: '/opt/app/src/server.php'
+  demo-service:
+    replicas: 1
+    containers:
+      nginx:
+        image: registry.hub.docker.com/library/nginx
+        version: alpine
+        listen: #Port listen by the container
+          - 8080
+        volumes:
+          www:
+            mount-path: '/var/www'
+            add:
+              - 'www/index.html'
+        variables:
+          NGINX_PORT: 8080
 
 #Pods expositions
 services:
-  php-services: #Service name
+  php-service: #Service name
     pod: "php-pods" #Pod name, use service name by default
     internal: false #If false, a load balancer is use to access it from outside
     protocol: 'TCP' #Or UDP
     ports:
       - listen: 9876 #Port listened
+        target: 8080 #Pod's port targeted
+  demo-service: #Service name
+    pod: "demo-pods" #Pod name, use service name by default
+    ports:
+      - listen: 8080 #Port listened
         target: 8080 #Pod's port targeted
 
 #Ingress configuration
@@ -66,7 +86,10 @@ ingress:
   demo: #rule name
     host: demo-paas.teknoo.io
     service: #default service
-      name: php-pods
+      name: php-service
       port: 8080
     paths:
-      -
+      - path: /demo
+        service:
+          name: demo-pods
+          port: 8080
