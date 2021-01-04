@@ -89,5 +89,5 @@ ingresses:
     paths:
       - path: /demo
         service:
-          name: demo-pods
+          name: demo-service
           port: 8080
