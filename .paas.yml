@@ -87,7 +87,7 @@ ingresses:
     host: demo-paas.teknoo.io
     service: #default service
       name: php-service
-      port: 8080
+      port: 9876
     paths:
       - path: /demo
         service:
