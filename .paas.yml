@@ -84,10 +84,10 @@ ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
     service: #default service
-      name: php-service
-      port: 9876
+      name: demo-service
+      port: 8080
     paths:
-      - path: /demo
+      - path: /php
         service:
-          name: demo-service
-          port: 8080
+          name: php-service
+          port: 9876
