@@ -57,14 +57,12 @@ pods:
         image: registry.hub.docker.com/library/nginx
         version: alpine
         listen: #Port listen by the container
-          - 8080
+          - 80
         volumes:
           www:
             mount-path: '/var'
             add:
               - 'www'
-        variables:
-          NGINX_PORT: 8080
 
 #Pods expositions
 services:
@@ -79,7 +77,7 @@ services:
     pod: "demo-pods" #Pod name, use service name by default
     ports:
       - listen: 8080 #Port listened
-        target: 8080 #Pod's port targeted
+        target: 80 #Pod's port targeted
 
 #Ingresses configuration
 ingresses:
