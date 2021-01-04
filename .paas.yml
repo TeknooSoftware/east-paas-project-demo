@@ -50,7 +50,7 @@ pods:
             persistent: true
         variables:
           SERVER_SCRIPT: '/opt/app/src/server.php'
-  demo-service:
+  demo-pods:
     replicas: 1
     containers:
       nginx:
