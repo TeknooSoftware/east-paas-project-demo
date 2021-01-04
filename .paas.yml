@@ -60,9 +60,9 @@ pods:
           - 8080
         volumes:
           www:
-            mount-path: '/var/www'
+            mount-path: '/var'
             add:
-              - 'www/index.html'
+              - 'www'
         variables:
           NGINX_PORT: 8080
 
