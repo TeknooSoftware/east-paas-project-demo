@@ -13,7 +13,7 @@ $loop = Factory::create();
 $server = new HttpServer($loop, static function () {
     $output = 'Hello World! '
         . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
-        . PHP_EOL . include ('/opt/extra/run.php');
+        . PHP_EOL . include ('/opt/extra/extra/run.php');
 
     \file_put_contents('/opt/data/output', $output);
 
