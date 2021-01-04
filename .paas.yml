@@ -5,7 +5,7 @@ paas: #Dedicated to compiler
 images:
   foo:
     build-name: foo
-    tag: lastest
+    tag: latest
     path: '/images/${FOO}'
 
 #Hook to build the project before container, Called in this order
@@ -81,7 +81,7 @@ services:
       - listen: 8080 #Port listened
         target: 8080 #Pod's port targeted
 
-#Ingress configuration
+#Ingresses configuration
 ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
