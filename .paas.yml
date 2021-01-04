@@ -36,7 +36,7 @@ pods:
         volumes: #Volumes to link
           extra:
             from: 'extra'
-            mount-path: '/opt/extra' #Path where volume will be mount
+            mount-path: '/opt/' #Path where volume will be mount
           app:
             mount-path: '/opt/app' #Path where data will be stored
             add: #folder or file, from .paas.yml where is located to add to the volume
