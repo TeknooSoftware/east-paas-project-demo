@@ -62,7 +62,11 @@ pods:
           www:
             mount-path: '/var'
             add:
-              - 'www'
+              - 'nginx/www'
+          config:
+            mount-path: '/etc/nginx/conf.d/'
+            add:
+              - 'nginx/conf.d/default.conf'
 
 #Pods expositions
 services:
