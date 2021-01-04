@@ -82,7 +82,7 @@ services:
         target: 8080 #Pod's port targeted
 
 #Ingress configuration
-ingress:
+ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
     service: #default service
