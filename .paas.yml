@@ -1,6 +1,18 @@
 paas: #Dedicated to compiler
   version: v1
 
+#Secrets provider
+secrets:
+  demo_vault:
+    provider: hashicorp/vault #Only external provider currently supported
+    options:
+      server: vault.teknoo.software
+  map_vault:
+    provider: map #Internal secrets, must be passed in this file
+    options:
+      key1: value1
+      key2: ${FOO}
+
 #Custom image, not available in the library
 images:
   foo:
@@ -87,6 +99,9 @@ services:
 ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
+    tls:
+      cert: !{demo_vault.tls.cert} #Configure the orchestrator to fetch value from vault
+      key: !{demo_vault.tls.key} #Configure the orchestrator to fetch value from vault
     service: #default service
       name: demo-service
       port: 8080
