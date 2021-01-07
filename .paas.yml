@@ -12,6 +12,11 @@ secrets:
     options:
       key1: value1
       key2: ${FOO}
+  volume_vault:
+    provider: map
+    options:
+      foo: bar
+      bar: foo
 
 #Custom image, not available in the library
 images:
@@ -60,8 +65,13 @@ pods:
           data: #Persistent volume, can not be pre-populated
             mount-path: '/opt/data'
             persistent: true
-        variables:
+          vault:
+            mount-path: '/vault'
+            from_secret: 'volume_vault'
+        variables: #To define some environment variables
           SERVER_SCRIPT: '/opt/app/src/server.php'
+          from_secret: #To fetch some value from secret/vault
+            KEY1: 'map_vault.key1'
   demo-pods:
     replicas: 1
     containers:
@@ -100,8 +110,7 @@ ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
     tls:
-      cert: "!{demo_vault.tls.cert}" #Configure the orchestrator to fetch value from vault
-      key: "!{demo_vault.tls.key}" #Configure the orchestrator to fetch value from vault
+      secret: "demo_vault" #Configure the orchestrator to fetch value from vault
     service: #default service
       name: demo-service
       port: 8080
