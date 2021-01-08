@@ -3,10 +3,6 @@ paas: #Dedicated to compiler
 
 #Secrets provider
 secrets:
-  demo_vault:
-    provider: hashicorp/vault #Only external provider currently supported
-    options:
-      server: vault.teknoo.software
   map_vault:
     provider: map #Internal secrets, must be passed in this file
     options:
