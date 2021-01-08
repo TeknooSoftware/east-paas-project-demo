@@ -70,7 +70,7 @@ pods:
             from-secret: 'volume_vault'
         variables: #To define some environment variables
           SERVER_SCRIPT: '/opt/app/src/server.php'
-          from-secret: #To fetch some value from secret/vault
+          from-secrets: #To fetch some value from secret/vault
             KEY1: 'map_vault.key1'
   demo-pods:
     replicas: 1
