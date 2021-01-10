@@ -13,6 +13,12 @@ secrets:
     options:
       foo: bar
       bar: foo
+  tls-vault:
+    provider: map
+    options:
+      tls:
+        crt: ${TLS_CERT}
+        key: ${TLS_KEY}
 
 #Custom image, not available in the library
 images:
@@ -68,6 +74,7 @@ pods:
           SERVER_SCRIPT: '/opt/app/src/server.php'
           from-secrets: #To fetch some value from secret/vault
             KEY1: 'map-vault.key1'
+            KEY2: 'map-vault.key2'
   demo-pods:
     replicas: 1
     containers:
@@ -106,7 +113,7 @@ ingresses:
   demo: #rule name
     host: demo-paas.teknoo.io
     tls:
-      secret: "demo-vault" #Configure the orchestrator to fetch value from vault
+      secret: "tls-vault" #Configure the orchestrator to fetch value from vault
     service: #default service
       name: demo-service
       port: 8080
