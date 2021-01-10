@@ -18,6 +18,7 @@ secrets:
     options:
       tls.crt: "base64:${TLS_CERT}"
       tls.key: "base64:${TLS_KEY}"
+      ca.crt: "base64:${TLS_CA}"
 
 #Custom image, not available in the library
 images:
