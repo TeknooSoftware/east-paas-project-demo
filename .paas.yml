@@ -17,8 +17,8 @@ secrets:
     provider: map
     options:
       tls:
-        crt: ${TLS_CERT}
-        key: ${TLS_KEY}
+        crt: "base64:${TLS_CERT}"
+        key: "base64:${TLS_KEY}"
 
 #Custom image, not available in the library
 images:
