@@ -48,8 +48,8 @@ pods:
     replicas: 2 #instance of pods
     containers:
       php-run: #Container name
-        image: registry.teknoo.io/php-run #Container image to use
-        version: 7.4
+        image: registry.teknoo.software/teknoo.software/php-run #Container image to use
+        version: 8.1
         listen: #Port listen by the container
           - 8080
         volumes: #Volumes to link
