@@ -48,7 +48,7 @@ pods:
     replicas: 2 #instance of pods
     containers:
       php-run: #Container name
-        image: registry.deloge.io/teknoosoftware/php-run #Container image to use
+        image: ${PHP_IMAGE} #Container image to use
         version: 8.1
         listen: #Port listen by the container
           - 8080
