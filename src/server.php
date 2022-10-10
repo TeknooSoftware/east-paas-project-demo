@@ -1,22 +1,25 @@
 #!/usr/bin/env php
 <?php
 
-use React\EventLoop\Factory;
+use React\EventLoop\Loop;
 use React\Http\Message\Response;
-use React\Http\Server as HttpServer;
-use React\Socket\Server as SocketServer;
+use React\Http\HttpServer;
+use React\Socket\SocketServer;
 
 require(__DIR__ . '/../vendor/autoload.php');
 
-$loop = Factory::create();
+$loop = Loop::get();
 
 $server = new HttpServer($loop, static function () {
     $output = 'Hello World! '
         . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
-        . PHP_EOL . \print_r($_ENV, true)
-        . PHP_EOL . include ('/opt/extra/extra/run.php');
+        . PHP_EOL . print_r($_ENV['KEY1'] ?? '', true);
 
-    \file_put_contents('/opt/data/output', $output);
+    if (\file_exists('/opt/extra/extra/run.php')) {
+        $output .= PHP_EOL . include('/opt/extra/extra/run.php');
+    }
+
+    @file_put_contents('/opt/data/output', $output);
 
     return new Response(
         200,
@@ -27,7 +30,7 @@ $server = new HttpServer($loop, static function () {
     );
 });
 
-$socket = new SocketServer('0.0.0.0:8080', $loop);
+$socket = new SocketServer('0.0.0.0:8080', [], $loop);
 $server->listen($socket);
 
 echo 'Server running at http://127.0.0.1:8080' . PHP_EOL;
