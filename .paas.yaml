@@ -110,7 +110,7 @@ services:
 #Ingresses configuration
 ingresses:
   demo: #rule name
-    host: demo-paas.teknoo.io
+    host: ${PROJECT_URL}
     tls:
       secret: "tls-vault" #Configure the orchestrator to fetch value from vault
     service: #default service
