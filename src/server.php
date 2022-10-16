@@ -13,13 +13,17 @@ $loop = Loop::get();
 $server = new HttpServer($loop, static function () {
     $output = 'Hello World! '
         . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
-        . PHP_EOL . print_r($_ENV['KEY1'] ?? '', true);
+        . PHP_EOL . @\file_get_contents('/vault/foo')
+        . PHP_EOL . @\file_get_contents('/vault/bar')
+        . PHP_EOL . ($_ENV['KEY1'] ?? '')
+        . PHP_EOL . ($_ENV['KEY2'] ?? '')
+        . PHP_EOL . @\file_get_contents('/opt/data/output');
 
     if (\file_exists('/opt/extra/extra/run.php')) {
         $output .= PHP_EOL . include('/opt/extra/extra/run.php');
     }
 
-    @file_put_contents('/opt/data/output', $output);
+    @\file_put_contents('/opt/data/output', time());
 
     return new Response(
         200,
