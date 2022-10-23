@@ -16,9 +16,9 @@ secrets:
   tls-vault:
     provider: map
     options:
-      tls.crt: "${TLS_CERT}"
-      tls.key: "${TLS_KEY}"
-      ca.crt: "${TLS_CA}"
+      tls.crt: "base64:${TLS_CERT}"
+      tls.key: "base64:${TLS_KEY}"
+      ca.crt: "base64:${TLS_CA}"
 
 #Custom image, not available in the library
 images:
