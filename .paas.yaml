@@ -89,7 +89,7 @@ pods:
         variables: #To define some environment variables
           SERVER_SCRIPT: '/opt/app/src/server.php'
           from-maps:
-            KEY0: 'map1.key0'
+            KEY0: 'map1.key1'
           import-maps:
             - 'map2'
           from-secrets: #To fetch some value from secret/vault
