@@ -44,7 +44,15 @@ images:
 #Hook to build the project before container, Called in this order
 builds:
   composer-build: #Name of the step
-    composer: ${COMPOSER} #Hook to call
+    composer:
+      action:  ${COMPOSER} #Hook to call
+      path: appliance
+      arguments:
+        - 'prefer-dist'
+        - 'no-interaction'
+        - 'no-dev'
+        - 'optimize-autoloader'
+        - 'classmap-authoritative'
 
 #Volume to build to use with container
 volumes:
