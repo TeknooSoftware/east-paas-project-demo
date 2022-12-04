@@ -62,7 +62,7 @@ volumes:
       - 'extra'
   other_name: #Name of the volume
     add: #folder or file, from .paas.yaml where is located to add to the volume
-      - 'vendor'
+      - 'appliance/vendor'
 
 #Pods (set of container)
 pods:
