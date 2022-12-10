@@ -17,7 +17,7 @@ $server = new HttpServer($loop, static function () {
     }
 
     $output = 'Hello World! '
-        . PHP_EOL . 'Demo v22.10.18.01'
+        . PHP_EOL . 'Demo v22.12.10.01'
         . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
         . PHP_EOL . 'volume-vault.foo : ' . @\file_get_contents('/vault/foo')
         . PHP_EOL . 'volume-vault.bar : ' . @\file_get_contents('/vault/bar')
