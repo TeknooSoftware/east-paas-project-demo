@@ -4,7 +4,7 @@ paas: #Dedicated to compiler
 #Config
 maps:
   map1:
-    key1: value2
+    key1: value3
     key2: ${FOO}
   map2:
     foo: bar
@@ -15,7 +15,7 @@ secrets:
   map-vault:
     provider: map #Internal secrets, must be passed in this file
     options:
-      key1: value1
+      key1: value2
       key2: ${FOO}
   map-vault2:
     provider: map #Internal secrets, must be passed in this file
