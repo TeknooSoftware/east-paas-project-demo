@@ -60,7 +60,7 @@ volumes:
     local-path: "/foo/bar" #optional local path where store data in the volume
     add: #folder or file, from .paas.yaml where is located to add to the volume
       - 'extra'
-  other_name: #Name of the volume
+  other-name: #Name of the volume
     add: #folder or file, from .paas.yaml where is located to add to the volume
       - 'appliance/vendor'
 
