@@ -46,13 +46,25 @@ builds:
   composer-build: #Name of the step
     composer:
       action:  ${COMPOSER} #Hook to call
-      path: appliance
+      path: php-app
       arguments:
         - 'prefer-dist'
         - 'no-interaction'
         - 'no-dev'
         - 'optimize-autoloader'
         - 'classmap-authoritative'
+  pip-build:
+    pip:
+      action:  'install'
+      path: python-app
+      arguments:
+        - 'upgrade'
+        - 'qr'
+        - 'requirements.txt'
+  npm-build:
+    npm:
+      action:  'install'
+      path: npm-app
 
 #Volume to build to use with container
 volumes:
@@ -62,7 +74,7 @@ volumes:
       - 'extra'
   other-name: #Name of the volume
     add: #folder or file, from .paas.yaml where is located to add to the volume
-      - 'appliance/vendor'
+      - 'php-app/vendor'
 
 #Pods (set of container)
 pods:
@@ -81,7 +93,7 @@ pods:
           app:
             mount-path: '/opt/app' #Path where data will be stored
             add: #folder or file, from .paas.yaml where is located to add to the volume
-              - 'appliance/'
+              - 'php-app/'
           data: #Persistent volume, can not be pre-populated
             mount-path: '/opt/data'
             persistent: true
@@ -102,6 +114,32 @@ pods:
             KEY2: 'map-vault.key2'
           import-secrets:
             - 'map-vault2'
+  python-pods:
+    containers:
+      python-run:
+        image: ${PYTHON_IMAGE}
+        version: ${PYTHON_VERSION}
+        listen:
+          - 8765
+        volumes:
+          app:
+            mount-path: '/opt/app'
+            add:
+              - 'python-app/'
+        variables:
+          SERVER_SCRIPT: 'server.py'
+  nodejs-pods:
+    containers:
+      nodejs-run:
+        image: ${NODEJS_IMAGE}
+        version: ${NODEJS_VERSION}
+        listen:
+          - 4563
+        volumes:
+          app:
+            mount-path: '/opt/app'
+            add:
+              - 'nodejs-app/'
   demo-pods:
     replicas: 1
     containers:
@@ -124,11 +162,21 @@ pods:
 services:
   php-service: #Service name
     pod: "php-pods" #Pod name, use service name by default
-    internal: false #If false, a load balancer is use to access it from outside
+    internal: false #If false, a load balancer is used to access it from outside
     protocol: 'TCP' #Or UDP
     ports:
       - listen: 9876 #Port listened
         target: 8080 #Pod's port targeted
+  python-service: #Service name
+    pod: "python-pods" #Pod name, use service name by default
+    ports:
+      - listen: 8765 #Port listened
+        target: 8765 #Pod's port targeted
+  nodejs-service: #Service name
+    pod: "nodejs-pods" #Pod name, use service name by default
+    ports:
+      - listen: 4563 #Port listened
+        target: 4563 #Pod's port targeted
   demo-service: #Service name
     pod: "demo-pods" #Pod name, use service name by default
     ports:
@@ -149,3 +197,11 @@ ingresses:
         service:
           name: php-service
           port: 9876
+      - path: /python
+        service:
+          name: python-service
+          port: 8765
+      - path: /nodejs
+        service:
+          name: nodejs-service
+          port: 4563
