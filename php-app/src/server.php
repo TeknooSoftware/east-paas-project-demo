@@ -6,7 +6,7 @@ use React\Http\Message\Response;
 use React\Http\HttpServer;
 use React\Socket\SocketServer;
 
-require(__DIR__ . '/../vendor/autoload.php');
+require __DIR__ . '/../vendor/autoload.php';
 
 $loop = Loop::get();
 
@@ -16,7 +16,7 @@ $server = new HttpServer($loop, static function () {
         $extra = 'extra : ' . include('/opt/extra/extra/run.php');
     }
 
-    $output = 'Hello World! '
+    $output = 'Hello World from PHP! '
         . PHP_EOL . 'Demo v22.12.10.03'
         . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
         . PHP_EOL . 'volume-vault.foo : ' . @\file_get_contents('/vault/foo')
