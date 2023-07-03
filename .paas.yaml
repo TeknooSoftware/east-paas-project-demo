@@ -140,6 +140,8 @@ pods:
             mount-path: '/opt/app'
             add:
               - 'nodejs-app/'
+        variables:
+          SERVER_SCRIPT: 'index.js'
   demo-pods:
     replicas: 1
     containers:
