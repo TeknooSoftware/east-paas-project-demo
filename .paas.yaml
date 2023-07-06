@@ -59,7 +59,8 @@ builds:
       path: python-app
       arguments:
         - 'upgrade'
-        - 'qr'
+        - 'q'
+        - 'r'
         - 'requirements.txt'
   npm-build:
     npm:
