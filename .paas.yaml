@@ -58,7 +58,6 @@ builds:
       action:  'install'
       path: python-app
       arguments:
-        - 'upgrade'
         - 'q'
         - 'r'
         - 'requirements.txt'
