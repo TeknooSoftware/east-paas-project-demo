@@ -53,6 +53,10 @@ builds:
         - 'no-dev'
         - 'optimize-autoloader'
         - 'classmap-authoritative'
+  npm-build:
+    npm:
+      action:  'install'
+      path: npm-app
   pip-build:
     pip:
       action:  'install'
@@ -61,10 +65,6 @@ builds:
         - 'q'
         - 'r'
         - 'requirements.txt'
-  npm-build:
-    npm:
-      action:  'install'
-      path: npm-app
 
 #Volume to build to use with container
 volumes:
