@@ -127,7 +127,7 @@ pods:
             add:
               - 'python-app/'
         variables:
-          SERVER_SCRIPT: 'server.py'
+          SERVER_SCRIPT: '/opt/app/server.py'
   nodejs-pods:
     containers:
       nodejs-run:
@@ -141,7 +141,7 @@ pods:
             add:
               - 'nodejs-app/'
         variables:
-          SERVER_SCRIPT: 'index.js'
+          SERVER_SCRIPT: '/opt/app/index.js'
   demo-pods:
     replicas: 1
     containers:
