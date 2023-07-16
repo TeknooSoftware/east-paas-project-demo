@@ -56,7 +56,7 @@ builds:
   npm-build:
     npm:
       action:  'install'
-      path: npm-app
+      path: nodejs-app
   pip-build:
     pip:
       action:  'install'
