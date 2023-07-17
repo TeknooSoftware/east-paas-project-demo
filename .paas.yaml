@@ -104,7 +104,8 @@ pods:
             mount-path: '/vault'
             from-secret: 'volume-vault'
         variables: #To define some environment variables
-          SERVER_SCRIPT: '/opt/app/src/server.php'
+          SERVER_DIRECTORY: '/opt/app/'
+          SERVER_SCRIPT: 'src/server.php'
           from-maps:
             KEY0: 'map1.key1'
           import-maps:
@@ -127,7 +128,8 @@ pods:
             add:
               - 'python-app/'
         variables:
-          SERVER_SCRIPT: '/opt/app/server.py'
+          SERVER_DIRECTORY: '/opt/app/'
+          SERVER_SCRIPT: 'server.py'
   nodejs-pods:
     containers:
       nodejs-run:
@@ -141,7 +143,8 @@ pods:
             add:
               - 'nodejs-app/'
         variables:
-          SERVER_SCRIPT: '/opt/app/index.js'
+          SERVER_DIRECTORY: '/opt/app/'
+          SERVER_SCRIPT: 'index.js'
   demo-pods:
     replicas: 1
     containers:
