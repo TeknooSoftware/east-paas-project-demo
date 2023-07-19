@@ -5,8 +5,9 @@ MESSAGE = "Hello World from PYTHON!"
 
 app = Flask(__name__)
 
-@app.route("/")
-def root():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     result = MESSAGE.encode(encoding="utf-8")
     return result
 
