@@ -191,6 +191,8 @@ services:
 ingresses:
   demo: #rule name
     host: ${PROJECT_URL}
+    meta:
+      letsencrypt: true
     tls:
       secret: "tls-vault" #Configure the orchestrator to fetch value from vault
     service: #default service
