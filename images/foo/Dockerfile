@@ -1,4 +1,4 @@
-FROM ubuntu:lunar
+FROM ubuntu:mantic
 
 MAINTAINER Richard Déloge <richarddeloge@gmail.com>
 
