@@ -79,8 +79,6 @@ volumes:
 pods:
   php-pods: #podset name
     replicas: 2 #instance of pods
-    security:
-      fs-group: 1000
     containers:
       php-run: #Container name
         image: ${PHP_IMAGE} #Container image to use
