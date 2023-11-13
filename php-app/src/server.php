@@ -12,8 +12,8 @@ $loop = Loop::get();
 
 $server = new HttpServer($loop, static function () {
     $extra = 'Missing extra';
-    if (\file_exists('/opt/extra/extra/run.php')) {
-        $extra = 'extra : ' . include('/opt/extra/extra/run.php');
+    if (\file_exists('/opt/extra/run.php')) {
+        $extra = 'extra : ' . include('/opt/extra/run.php');
     }
 
     $output = 'Hello World from PHP! '
