@@ -116,6 +116,11 @@ pods:
             KEY2: 'map-vault.key2'
           import-secrets:
             - 'map-vault2'
+        resources:
+          - type: cpu
+            limit: 10%
+          - type: memory
+            limit: 10%
   python-pods:
     containers:
       python-run:
@@ -131,6 +136,11 @@ pods:
         variables:
           SERVER_DIRECTORY: '/opt/app/'
           SERVER_SCRIPT: 'server.py'
+        resources:
+          - type: cpu
+            limit: 10%
+          - type: memory
+            limit: 10%
   nodejs-pods:
     containers:
       nodejs-run:
@@ -146,6 +156,11 @@ pods:
         variables:
           SERVER_DIRECTORY: '/opt/app/'
           SERVER_SCRIPT: 'index.js'
+        resources:
+          - type: cpu
+            limit: 10%
+          - type: memory
+            limit: 10%
   demo-pods:
     replicas: 1
     containers:
@@ -163,6 +178,11 @@ pods:
             mount-path: '/etc/nginx/conf.d/'
             add:
               - 'nginx/conf.d/default.conf'
+        resources:
+          - type: cpu
+            limit: 10%
+          - type: memory
+            limit: 10%
 
 #Pods expositions
 services:
