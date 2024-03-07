@@ -118,11 +118,9 @@ pods:
             - 'map-vault2'
         resources:
           - type: cpu
-            require: 10%
-            limit: 10%
+            require: 20%
           - type: memory
-            require: 10%
-            limit: 10%
+            require: 20%
   python-pods:
     containers:
       python-run:
@@ -140,11 +138,9 @@ pods:
           SERVER_SCRIPT: 'server.py'
         resources:
           - type: cpu
-            require: 10%
-            limit: 35%
+            require: 20%
           - type: memory
-            require: 10%
-            limit: 35%
+            require: 20%
   nodejs-pods:
     containers:
       nodejs-run:
@@ -162,11 +158,9 @@ pods:
           SERVER_SCRIPT: 'index.js'
         resources:
           - type: cpu
-            require: 10%
-            limit: 35%
+            require: 30%
           - type: memory
-            require: 10%
-            limit: 35%
+            require: 30%
   demo-pods:
     replicas: 1
     containers:
