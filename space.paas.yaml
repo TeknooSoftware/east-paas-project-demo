@@ -141,10 +141,10 @@ pods:
         resources:
           - type: cpu
             require: 10%
-            limit: 10%
+            limit: 20%
           - type: memory
             require: 10%
-            limit: 10%
+            limit: 20%
   nodejs-pods:
     containers:
       nodejs-run:
