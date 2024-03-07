@@ -141,10 +141,10 @@ pods:
         resources:
           - type: cpu
             require: 10%
-            limit: 20%
+            limit: 35%
           - type: memory
             require: 10%
-            limit: 20%
+            limit: 35%
   nodejs-pods:
     containers:
       nodejs-run:
@@ -163,10 +163,10 @@ pods:
         resources:
           - type: cpu
             require: 10%
-            limit: 10%
+            limit: 35%
           - type: memory
             require: 10%
-            limit: 10%
+            limit: 35%
   demo-pods:
     replicas: 1
     containers:
