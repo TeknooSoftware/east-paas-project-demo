@@ -118,8 +118,10 @@ pods:
             - 'map-vault2'
         resources:
           - type: cpu
+            require: 10%
             limit: 10%
           - type: memory
+            require: 10%
             limit: 10%
   python-pods:
     containers:
@@ -138,8 +140,10 @@ pods:
           SERVER_SCRIPT: 'server.py'
         resources:
           - type: cpu
+            require: 10%
             limit: 10%
           - type: memory
+            require: 10%
             limit: 10%
   nodejs-pods:
     containers:
@@ -158,8 +162,10 @@ pods:
           SERVER_SCRIPT: 'index.js'
         resources:
           - type: cpu
+            require: 10%
             limit: 10%
           - type: memory
+            require: 10%
             limit: 10%
   demo-pods:
     replicas: 1
@@ -180,8 +186,10 @@ pods:
               - 'nginx/conf.d/default.conf'
         resources:
           - type: cpu
+            require: 10%
             limit: 10%
           - type: memory
+            require: 10%
             limit: 10%
 
 #Pods expositions
