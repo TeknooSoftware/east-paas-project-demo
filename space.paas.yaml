@@ -1,5 +1,12 @@
 paas: #Dedicated to compiler
   version: v1
+  quotas:
+    - category: compute
+      type: cpu
+      capacity: '250m'
+    - category: memory
+      type: memory
+      capacity: '256Mi'
 
 #Config
 maps:
@@ -67,7 +74,7 @@ builds:
 
 #Volume to build to use with container
 volumes:
-  extra: #Name of the volume
+  extra: #Name key1of the volume
     local-path: "/foo/bar" #optional local path where store data in the volume
     add: #folder or file, from .paas.yaml where is located to add to the volume
       - 'extra'
