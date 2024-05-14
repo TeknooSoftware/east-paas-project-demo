@@ -1,4 +1,4 @@
-FROM ubuntu:mantic
+FROM ubuntu:noble
 
 MAINTAINER Richard Déloge <richarddeloge@gmail.com>
 
