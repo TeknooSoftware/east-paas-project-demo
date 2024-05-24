@@ -51,7 +51,7 @@ images:
 #Hook to build the project before container, Called in this order
 builds:
   composer-build: #Name of the step
-    composer:
+    composer-${PHP_VERSION}:
       action:  ${COMPOSER} #Hook to call
       path: php-app
       arguments:
