@@ -91,7 +91,7 @@ pods:
     containers:
       php-run: #Container name
         image: ${PHP_IMAGE} #Container image to use
-        version: ${PHP_VERSION}
+        version: '${PHP_VERSION}-cli'
         listen: #Port listen by the container
           - 8080
         volumes: #Volumes to link
