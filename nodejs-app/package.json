@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "date-and-time": "^3.0.2"
+    "date-and-time": "^3"
   }
 }
