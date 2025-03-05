@@ -82,34 +82,34 @@ volumes:
       local-path: "/foo/bar" #optional local path where store data in the volume
       add: #folder or file, from .paas.yaml where is located to add to the volume
         - 'extra'
-        - 
-  jobs:
-    init-php:
-      planning: during-deployment
-      pods:
-        init-php:
-          containers:
-            php-run: #Container name
-              image: ${PHP_IMAGE} #Container image to use
-              version: '${PHP_VERSION}-cli'
-              volumes: #Volumes to link
-                app:
-                  mount-path: '/opt/app' #Path where data will be stored
-                  add: #folder or file, from .paas.yaml where is located to add to the volume
-                    - 'php-job/'
-                cron: #Persistent volume, can not be pre-populated
-                  name: 'job-volume'
-                  mount-path: '/mnt/job'
-                  persistent: true
-                  write-many: true
-              variables: #To define some environment variables
-                SERVER_DIRECTORY: '/opt/app/'
-                SERVER_SCRIPT: 'src/init.php'
-              resources:
-                - type: cpu
-                  require: 10%
-                - type: memory
-                  require: 10%
+
+jobs:
+  init-php:
+    planning: during-deployment
+    pods:
+      init-php:
+        containers:
+          php-run: #Container name
+            image: ${PHP_IMAGE} #Container image to use
+            version: '${PHP_VERSION}-cli'
+            volumes: #Volumes to link
+              app:
+                mount-path: '/opt/app' #Path where data will be stored
+                add: #folder or file, from .paas.yaml where is located to add to the volume
+                  - 'php-job/'
+              cron: #Persistent volume, can not be pre-populated
+                name: 'job-volume'
+                mount-path: '/mnt/job'
+                persistent: true
+                write-many: true
+            variables: #To define some environment variables
+              SERVER_DIRECTORY: '/opt/app/'
+              SERVER_SCRIPT: 'src/init.php'
+            resources:
+              - type: cpu
+                require: 10%
+              - type: memory
+                require: 10%
 
 if{STAGE=demo}:
   jobs:
