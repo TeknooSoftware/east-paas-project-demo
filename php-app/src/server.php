@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
+namespace Teknoo\Space\Demo\App;
+
 use React\EventLoop\Loop;
 use React\Http\Message\Response;
 use React\Http\HttpServer;
@@ -12,21 +16,24 @@ $loop = Loop::get();
 
 $server = new HttpServer($loop, static function () {
     $extra = 'Missing extra';
-    if (\file_exists('/opt/extra/run.php')) {
+    if (file_exists('/opt/extra/run.php')) {
         $extra = 'extra : ' . include('/opt/extra/run.php');
     }
 
+    $now = (new DateTimeImmutable())->format('Y-m-d H:i:s');
     $output = 'Hello World from PHP! '
         . PHP_EOL . 'Demo v23.11.12.01'
-        . PHP_EOL . 'Date : ' . \date('Y-m-d H:i:s')
-        . PHP_EOL . 'volume-vault.foo : ' . @\file_get_contents('/vault/foo')
-        . PHP_EOL . 'volume-vault.bar : ' . @\file_get_contents('/vault/bar')
+        . PHP_EOL . 'Date : ' . $now
+        . PHP_EOL . 'volume-vault.foo : ' . @file_get_contents('/vault/foo')
+        . PHP_EOL . 'volume-vault.bar : ' . @file_get_contents('/vault/bar')
         . PHP_EOL . 'map-vault.key1 : ' . ($_ENV['KEY1'] ?? '')
         . PHP_EOL . 'map-vault.key2 : ' . ($_ENV['KEY2'] ?? '')
-        . PHP_EOL . 'output : ' . @\file_get_contents('/opt/data/output')
+        . PHP_EOL . 'from output : ' . @file_get_contents('/mnt/data/output')
+        . PHP_EOL . 'from job : ' . @file_get_contents('/mnt/job/init')
+        . PHP_EOL . 'from cron : ' . @file_get_contents('/mnt/job/output')
         . PHP_EOL . $extra;
 
-    @\file_put_contents('/opt/data/output', time());
+    @file_put_contents('/mnt/data/output', 'Last visite at ' . $now);
 
     return new Response(
         200,
