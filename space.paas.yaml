@@ -166,6 +166,7 @@ pods:
           data: #Persistent volume, can not be pre-populated
             mount-path: '/mnt/data'
             persistent: true
+            write-many: true
             storage-provider: ${SC_REPLICATED}
           cron: #Persistent volume, can not be pre-populated
             name: 'job-volume'
