@@ -282,7 +282,8 @@ services:
       - listen: 4563 #Port listened
         target: 4563 #Pod's port targeted
   demo-service: #Service name
-    pod: "demo-pods" #Pod name, use service name by default
+    pod: "demo-pods" #Pod name, use service name by defaultprotocol: 'HTTPS' #Or
+    protocol: 'HTTPS' #Or UDP
     ports:
       - listen: 8080 #Port listened
         target: 8080 #Pod's port targeted
